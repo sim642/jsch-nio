@@ -176,7 +176,16 @@ public class UnixSshFileSystemProvider extends AbstractSshFileSystemProvider {
             commandBuilder.append( "-m " ).append( toMode( permissions ) );
         }
         commandBuilder.append( unixPath.toAbsolutePath().quotedString() );
-        executeForStdout( unixPath, commandBuilder.toString() );
+
+        try {
+            executeForStdout(unixPath, commandBuilder.toString());
+        }
+        catch (UnixSshCommandFailedException e) {
+            if (e.getResult().getStderr().contains("File exists"))
+                throw new FileAlreadyExistsException(e.getMessage());
+
+            throw e;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -940,6 +949,14 @@ public class UnixSshFileSystemProvider extends AbstractSshFileSystemProvider {
                     + result.getExitCode() + ": stdout='"
                     + result.getStdout() + "', stderr='"
                     + result.getStderr() + "'";
+        }
+
+        public String getCommand() {
+            return command;
+        }
+
+        public ExecuteResult getResult() {
+            return result;
         }
     }
 }
