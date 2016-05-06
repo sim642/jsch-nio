@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>9</version>
+    <groupId>ee.shy</groupId>
+    <artifactId>shy</artifactId>
+    <version>3.0-SNAPSHOT</version>
   </parent>
 
   <groupId>com.pastdev</groupId>
@@ -48,7 +48,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     
     <bcprov.version>1.52</bcprov.version>
-    <jsch-extension.version>0.1.6</jsch-extension.version>
+    <jsch-extension.version>0.1.7-SNAPSHOT</jsch-extension.version>
     <junit.version>4.12</junit.version>
     <logback.version>1.1.3</logback.version>
     
